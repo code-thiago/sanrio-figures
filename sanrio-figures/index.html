@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Art Figure Collection – My Melody & Kuromi</title>
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Pacifico&family=Fredoka+One&family=Nunito:wght@400;600;700;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- ─── OVERLAY (theme transition flash) ──────────────────── -->
+  <div id="overlay"></div>
+
+  <!-- ─── CONFETTI CANVAS ───────────────────────────────────── -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- ─── TOAST NOTIFICATION ────────────────────────────────── -->
+  <div id="toast">🎉 Redirecionando para a Amazon!</div>
+
+  <!-- ─── BACKGROUND PARTICLES ──────────────────────────────── -->
+  <div id="particles"></div>
+
+  <!-- ─── MAIN PAGE ─────────────────────────────────────────── -->
+  <div class="page-wrap">
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="brand-badge" id="brand-badge">✨ Edição Limitada</div>
+      <h1 id="main-title">A doçura que<br>cabe na sua prateleira</h1>
+      <p class="sub" id="main-sub">
+        Figuras de arte oficiais para quem carrega amor por toda parte 🎀
+      </p>
+    </div>
+
+    <!-- COUNTDOWN BANNER -->
+    <div class="countdown-bar">
+      <span class="label">⏰ Oferta especial expira em:</span>
+      <div class="countdown-digits">
+        <div class="cd-block">
+          <span class="cd-num" id="cd-h">05</span>
+          <span class="cd-lbl">horas</span>
+        </div>
+        <div class="cd-block">
+          <span class="cd-num" id="cd-m">47</span>
+          <span class="cd-lbl">min</span>
+        </div>
+        <div class="cd-block">
+          <span class="cd-num" id="cd-s">22</span>
+          <span class="cd-lbl">seg</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHARACTER TOGGLE -->
+    <div class="toggle-wrap">
+      <button
+        class="toggle-btn active"
+        id="btn-melody"
+        onclick="switchTo('melody')"
+      >
+        <span>🎀</span> My Melody
+      </button>
+      <button
+        class="toggle-btn"
+        id="btn-kuromi"
+        onclick="switchTo('kuromi')"
+      >
+        <span>💜</span> Kuromi
+      </button>
+    </div>
+
+    <!-- PRODUCT CARD -->
+    <div class="product-card">
+
+      <!-- Ribbon label -->
+      <div class="ribbon" id="ribbon">NOVO ✦</div>
+
+      <!-- Floating decorative emojis -->
+      <div class="deco-float" id="deco0" style="top:12%;right:8%;animation-delay:0s">🌸</div>
+      <div class="deco-float" id="deco1" style="top:60%;left:5%;animation-delay:1.5s">⭐</div>
+      <div class="deco-float" id="deco2" style="bottom:10%;right:6%;animation-delay:3s">🎀</div>
+
+      <!-- 3D MODEL VIEWER -->
+      <div class="viewer-shell">
+
+        <!-- My Melody model -->
+        <div class="model-slide fade-in" id="model-melody">
+          <iframe
+            title="My Melody"
+            frameborder="0"
+            allowfullscreen
+            mozallowfullscreen="true"
+            webkitallowfullscreen="true"
+            allow="autoplay; fullscreen; xr-spatial-tracking"
+            xr-spatial-tracking
+            execution-while-out-of-viewport
+            execution-while-not-rendered
+            web-share
+            src="https://sketchfab.com/models/a0c02bef659f44e69d979fe276efde8c/embed"
+          ></iframe>
+          <p class="viewer-caption">
+            <a
+              href="https://sketchfab.com/3d-models/my-melody-a0c02bef659f44e69d979fe276efde8c"
+              target="_blank"
+              rel="nofollow"
+            >My Melody</a>
+            por
+            <a
+              href="https://sketchfab.com/kraevaya201"
+              target="_blank"
+              rel="nofollow"
+            >fukkacumy</a>
+            no Sketchfab
+          </p>
+        </div>
+
+        <!-- Kuromi model -->
+        <div class="model-slide hidden" id="model-kuromi">
+          <iframe
+            title="Kuromi"
+            frameborder="0"
+            allowfullscreen
+            mozallowfullscreen="true"
+            webkitallowfullscreen="true"
+            allow="autoplay; fullscreen; xr-spatial-tracking"
+            xr-spatial-tracking
+            execution-while-out-of-viewport
+            execution-while-not-rendered
+            web-share
+            src="https://sketchfab.com/models/a9a4883cbc2a40e89722001aa6288ba8/embed"
+          ></iframe>
+          <p class="viewer-caption">
+            <a
+              href="https://sketchfab.com/3d-models/kuromi-a9a4883cbc2a40e89722001aa6288ba8"
+              target="_blank"
+              rel="nofollow"
+            >Kuromi</a>
+            por
+            <a
+              href="https://sketchfab.com/jiayingc"
+              target="_blank"
+              rel="nofollow"
+            >jiayingc</a>
+            no Sketchfab
+          </p>
+        </div>
+
+      </div><!-- /viewer-shell -->
+
+      <!-- PRODUCT TAGS -->
+      <div class="tags" id="tags"></div>
+
+      <!-- FEATURES GRID -->
+      <div class="features" id="features"></div>
+
+      <!-- COPY / DESCRIPTION -->
+      <div class="copy-block">
+        <div class="eyebrow" id="eyebrow"></div>
+        <h2 id="copy-title"></h2>
+        <p id="copy-body"></p>
+      </div>
+
+      <!-- STAR RATING + PRICE -->
+      <div style="width:100%;text-align:center">
+        <div class="stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <div class="rating-lbl" id="rating-lbl"></div>
+        <div class="price-row">
+          <span class="price" id="price"></span>
+          <span class="price-old" id="price-old"></span>
+          <span class="discount-badge" id="disc-badge"></span>
+        </div>
+      </div>
+
+      <!-- STOCK INDICATOR -->
+      <div class="stock-wrap">
+        <div class="stock-label" id="stock-label"></div>
+        <div class="stock-bar">
+          <div class="stock-fill" id="stock-fill"></div>
+        </div>
+      </div>
+
+      <!-- BUY BUTTON (links to Amazon) -->
+      <a
+        class="btn-buy"
+        id="buy-btn"
+        href="#"
+        target="_blank"
+        rel="noopener"
+        onclick="onBuyClick(event)"
+      >
+        🛒 Comprar na Amazon →
+      </a>
+
+      <!-- WISHLIST BUTTON -->
+      <button class="btn-wish" id="wish-btn" onclick="toggleWish()">
+        🤍 Adicionar à Lista de Desejos
+      </button>
+
+      <!-- TRUST BADGES -->
+      <div class="guarantees">
+        <div class="guarantee">🔒 Pagamento seguro</div>
+        <div class="guarantee">📦 Frete Prime</div>
+        <div class="guarantee">↩ 30 dias de devolução</div>
+        <div class="guarantee">🏷️ Menor preço</div>
+      </div>
+
+    </div><!-- /product-card -->
+
+    <!-- CUSTOMER REVIEWS -->
+    <div class="reviews-section">
+      <div class="reviews-title" id="reviews-title">
+        💬 O que os fãs estão dizendo
+      </div>
+      <div class="reviews-grid" id="reviews-grid"></div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      © 2025 Art Figure Collection · Todos os direitos reservados · Sanrio™ oficial
+    </div>
+
+  </div><!-- /page-wrap -->
+
+  <!-- JavaScript -->
+  <script src="index.js"></script>
+
+</body>
+</html>
